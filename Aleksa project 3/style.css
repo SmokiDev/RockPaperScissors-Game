@@ -1,0 +1,27 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  background-color: #ccc;
+}
+#game, .wtf {
+  display: flex;
+  justify-content: center;
+}
+button {
+  background-color: #ccc;
+  font-size: 5rem;
+  border: none;
+  cursor: pointer;
+  margin: 2rem;
+  transition: 1s;
+}
+button:hover {
+  transform: scale(1.2);
+}
+#game-info {
+  font-size: 1.5rem;
+  margin: 1rem;
+}
