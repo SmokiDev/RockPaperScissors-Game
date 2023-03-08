@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RockPaperScissors Game</title>
+  </head>
+  <body>
+    <div id="game"></div>
+    <div class="wtf">
+      <div id="game-info">
+        <h2>Player choice:<span class="player-choice"></span></h2>
+        <h2>Computer choice:<span class="computer-choice"></span></h2>
+        <h2>Result:<span class="result"></span></h2>
+      </div>
+    </div>
+  </body>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      background-color: #ccc;
+    }
+    #game,
+    .wtf {
+      display: flex;
+      justify-content: center;
+    }
+    button {
+      background-color: #ccc;
+      font-size: 5rem;
+      border: none;
+      cursor: pointer;
+      margin: 2rem;
+      transition: 1s;
+    }
+    button:hover {
+      transform: scale(1.2);
+    }
+    #game-info {
+      font-size: 1.5rem;
+      margin: 1rem;
+    }
+  </style>
+  <script>
+    const pcChoice = document.querySelector(".computer-choice");
+    const playerChoice = document.querySelector(".player-choice");
+    const result = document.querySelector(".result");
+    const game = document.querySelector("#game");
+    const choices = ["✊🏻", "🤚🏻", "✌🏻"];
+    const clicked = (e) => {
+      const computerChoice =
+        choices[Math.floor(Math.random() * choices.length)];
+      const userChoice = e.target.innerHTML;
+      getResult(userChoice, computerChoice);
+      pcChoice.innerHTML = computerChoice;
+      playerChoice.innerHTML = userChoice;
+    };
+    choices.forEach((choice) => {
+      const button = document.createElement("button");
+      button.innerHTML = choice;
+      button.addEventListener("click", clicked);
+      game.appendChild(button);
+    });
+    const getResult = (userChoice, computerChoice) => {
+      switch (userChoice + computerChoice) {
+        case "✌🏻🤚🏻":
+        case "✊🏻✌🏻":
+        case "🤚🏻✊🏻":
+          result.style.color = "green";
+          result.innerHTML = "You win!";
+          break;
+        case "🤚🏻✌🏻":
+        case "✌🏻✊🏻":
+        case "✊🏻🤚🏻":
+          result.style.color = "crimson";
+          result.innerHTML = "You lose!";
+          break;
+        case "🤚🏻🤚🏻":
+        case "✌🏻✌🏻":
+        case "✊🏻✊🏻":
+          result.style.color = "black";
+          result.innerHTML = "Its draw!";
+          break;
+      }
+    };
+  </script>
+</html>
